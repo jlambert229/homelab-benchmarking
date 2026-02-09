@@ -42,18 +42,18 @@ echo "" | tee -a "$OUTPUT_FILE"
 # NFS test (if mount exists)
 if [[ -d "$NFS_MOUNT" ]]; then
     echo "--- NFS Performance ($NFS_MOUNT) ---" | tee -a "$OUTPUT_FILE"
-    
+
     TEST_FILE="$NFS_MOUNT/benchmark-$$.img"
-    
+
     echo "Sequential write:" | tee -a "$OUTPUT_FILE"
     dd if=/dev/zero of="$TEST_FILE" bs=1M count=1024 conv=fdatasync 2>&1 | grep copied | tee -a "$OUTPUT_FILE"
-    
+
     sync
     echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null 2>&1 || true
-    
+
     echo "Sequential read:" | tee -a "$OUTPUT_FILE"
     dd if="$TEST_FILE" of=/dev/null bs=1M 2>&1 | grep copied | tee -a "$OUTPUT_FILE"
-    
+
     rm -f "$TEST_FILE"
 else
     echo "⚠️  NFS mount $NFS_MOUNT not found. Skipping NFS tests." | tee -a "$OUTPUT_FILE"
@@ -65,7 +65,7 @@ echo "--- CPU Performance ---" | tee -a "$OUTPUT_FILE"
 if command -v sysbench &> /dev/null; then
     echo "Single-threaded:" | tee -a "$OUTPUT_FILE"
     sysbench cpu --threads=1 --time=10 run 2>&1 | grep "events per second" | tee -a "$OUTPUT_FILE"
-    
+
     echo "Multi-threaded:" | tee -a "$OUTPUT_FILE"
     sysbench cpu --threads="$(nproc)" --time=10 run 2>&1 | grep "events per second" | tee -a "$OUTPUT_FILE"
 else

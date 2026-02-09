@@ -55,7 +55,7 @@ if command -v fio &> /dev/null; then
         --group_reporting \
         --directory="$NFS_MOUNT" \
         --output-format=normal | grep -E "IOPS|BW"
-    
+
     echo ""
     echo "--- Random Write (4K blocks) ---"
     fio --name=random-write \

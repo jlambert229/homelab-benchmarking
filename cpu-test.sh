@@ -46,17 +46,17 @@ if command -v sensors &> /dev/null; then
     echo "Starting stress test with temperature monitoring..."
     echo "Press Ctrl+C to stop"
     echo ""
-    
+
     if command -v stress-ng &> /dev/null; then
         stress-ng --cpu "$CORES" --vm 2 --vm-bytes 50% --timeout 600 --metrics &
         STRESS_PID=$!
-        
+
         for i in {1..60}; do
             sleep 10
             echo "=== $((i*10))s ==="
             sensors | grep -E "Core|Package|temp" || true
         done
-        
+
         kill $STRESS_PID 2>/dev/null || true
         wait $STRESS_PID 2>/dev/null || true
     else
