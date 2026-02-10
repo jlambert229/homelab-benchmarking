@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 DURATION="${1:-30}"
@@ -23,6 +23,7 @@ CORES=$(nproc)
 echo "System info:"
 echo "  CPU cores: $CORES"
 if [[ -f /proc/cpuinfo ]]; then
+    CPU_MODEL
     CPU_MODEL=$(grep "model name" /proc/cpuinfo | head -1 | cut -d: -f2 | xargs)
     echo "  CPU model: $CPU_MODEL"
 fi
