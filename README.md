@@ -1,5 +1,8 @@
 # homelab-benchmarking
 
+![pre-commit](https://github.com/jlambert229/homelab-benchmarking/actions/workflows/pre-commit.yml/badge.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/jlambert229/homelab-benchmarking)
+
 Performance testing and benchmarking scripts for homelab infrastructure.
 
 **Blog post:** [Homelab Network Performance Testing and Benchmarking](https://foggyclouds.io/post/homelab-network-benchmarking/)
@@ -52,7 +55,7 @@ brew install iperf3 fio sysbench stress-ng
 
 ```bash
 # Configure your environment
-export NAS_IP="192.168.2.129"
+export NAS_IP="192.168.2.10"
 export NFS_MOUNT="/mnt/nfs-test"
 
 # Run all tests
@@ -70,7 +73,7 @@ Results saved to `./results/benchmark-<timestamp>.txt`
 iperf3 -s
 
 # Run client test
-./network-test.sh 192.168.2.129
+./network-test.sh 192.168.2.10
 ```
 
 **NFS:**
@@ -78,7 +81,7 @@ iperf3 -s
 ```bash
 # Mount NFS share first
 sudo mkdir -p /mnt/nfs-test
-sudo mount -t nfs 192.168.2.129:/volume1/nfs01 /mnt/nfs-test
+sudo mount -t nfs 192.168.2.10:/volume1/nfs01 /mnt/nfs-test
 
 # Run test
 ./nfs-test.sh /mnt/nfs-test
