@@ -7,7 +7,7 @@ DURATION="${2:-30}"
 if [[ -z "$SERVER" ]]; then
     echo "Usage: $0 <server-ip> [duration-seconds]"
     echo ""
-    echo "Example: $0 192.168.2.129 30"
+    echo "Example: $0 192.168.1.10 30"
     exit 1
 fi
 

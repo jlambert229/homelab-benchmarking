@@ -6,7 +6,7 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 OUTPUT_FILE="$OUTPUT_DIR/benchmark-${TIMESTAMP}.txt"
 
 # Configuration
-NAS_IP="${NAS_IP:-192.168.2.129}"
+NAS_IP="${NAS_IP:-192.168.1.10}"
 NFS_MOUNT="${NFS_MOUNT:-/mnt/nfs-test}"
 
 mkdir -p "$OUTPUT_DIR"

@@ -55,7 +55,7 @@ brew install iperf3 fio sysbench stress-ng
 
 ```bash
 # Configure your environment
-export NAS_IP="192.168.2.10"
+export NAS_IP="192.168.1.10"
 export NFS_MOUNT="/mnt/nfs-test"
 
 # Run all tests
@@ -73,7 +73,7 @@ Results saved to `./results/benchmark-<timestamp>.txt`
 iperf3 -s
 
 # Run client test
-./network-test.sh 192.168.2.10
+./network-test.sh 192.168.1.10
 ```
 
 **NFS:**
@@ -81,7 +81,7 @@ iperf3 -s
 ```bash
 # Mount NFS share first
 sudo mkdir -p /mnt/nfs-test
-sudo mount -t nfs 192.168.2.10:/volume1/nfs01 /mnt/nfs-test
+sudo mount -t nfs 192.168.1.10:/volume1/nfs01 /mnt/nfs-test
 
 # Run test
 ./nfs-test.sh /mnt/nfs-test
